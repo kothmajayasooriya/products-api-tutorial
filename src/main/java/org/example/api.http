@@ -1,1 +1,47 @@
-GET http://localhost:8080/hello
+### 1. Add Laptop
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "price": 899.99
+}
+
+### 2. Add Mouse
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Mouse",
+  "price": 24.99
+}
+
+### 3. Add Lamp
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "Lamp",
+  "price": 15.50
+}
+
+### 4. Get all products
+GET http://localhost:8080/products
+
+### 5. Get product 1
+GET http://localhost:8080/products/1
+
+### 6. Delete product 1
+DELETE http://localhost:8080/products/1
+
+### 7. Get all again (Laptop should be gone)
+GET http://localhost:8080/products
+
+### 8. The 404 experiment (id does not exist)
+GET http://localhost:8080/products/99
+
+### 9. Search for Lap
+GET http://localhost:8080/products/search?name=Lap
+
+### 10. Search with no match
+GET http://localhost:8080/products/search?name=xyz
