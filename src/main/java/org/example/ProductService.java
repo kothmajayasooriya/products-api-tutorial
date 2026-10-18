@@ -33,7 +33,7 @@ public class ProductService {
 
     public List<Product> findByName(String name) {
         return products.stream()
-                .filter(p -> p.getName().toLowerCase().contains(name.toLowerCase()))
+                .filter(p -> p.getName().contains(name))
                 .toList();
     }
 }
