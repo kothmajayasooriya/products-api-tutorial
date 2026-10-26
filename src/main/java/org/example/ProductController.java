@@ -11,10 +11,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    // ---------- Tutorial 2 (kept) ----------
     @GetMapping("/products/tutorial2/{id}")
     public Product getById(@PathVariable Long id) {
-        return new Product(id, "Laptop", 999.99);
+        return new PhysicalProduct(id, "Laptop", 999.99, 2.0, "35cm x 25cm x 2cm");
     }
 
     // ---------- Tutorial 3 ----------
@@ -29,7 +28,9 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@RequestBody DigitalProduct product) {
+        // Product is abstract, so Jackson cannot build it from JSON.
+        // Temporary fix: accept a concrete subclass.
         return productService.addProduct(product);
     }
 
