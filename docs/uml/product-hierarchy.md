@@ -1,25 +1,36 @@
 ```mermaid
 classDiagram
     class Product {
+        <<abstract>>
         -Long id
         -String name
         -double price
+        +getSummary()* String
         +getId() Long
         +getName() String
         +getPrice() double
     }
+    class Discountable {
+        <<interface>>
+        +applyDiscount(double rate) void
+        +getDiscountedPrice() double
+    }
     class DigitalProduct {
         -String downloadUrl
         -double fileSizeMB
-        +getDownloadUrl() String
-        +getFileSizeMB() double
+        -double discountedPrice
+        +getSummary() String
+        +applyDiscount(double rate) void
     }
     class PhysicalProduct {
         -double weightKg
         -String dimensions
-        +getWeightKg() double
-        +getDimensions() String
+        -double discountedPrice
+        +getSummary() String
+        +applyDiscount(double rate) void
     }
     Product <|-- DigitalProduct
     Product <|-- PhysicalProduct
+    Discountable <|.. DigitalProduct
+    Discountable <|.. PhysicalProduct
 ```
